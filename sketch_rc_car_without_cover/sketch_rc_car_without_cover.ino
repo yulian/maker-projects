@@ -9,6 +9,10 @@
  * 
  */
 
+ #include <SoftwareSerial.h>
+
+SoftwareSerial BTSerial(13, 12);    // TX:13, RX:12
+
 // Inialize pin number for motor A
 #define A_1A  5
 #define A_1B  6
@@ -20,27 +24,26 @@
 int carSpeed = 200; // Speed of motor
 
 void setup() {
+  BTSerial.begin(9600);
   Serial.begin(9600);
 
   // Set pin mode as OUTPUT for motor A
   pinMode(A_1A, OUTPUT);
-  pinMode(A_1A, OUTPUT);
+  pinMode(A_1B, OUTPUT);
 
   // Set pin mode as OUTPUT for motor B
   pinMode(B_1A, OUTPUT);
   pinMode(B_1B, OUTPUT);
 
-  digitalWrite(A_1A, LOW);
-  digitalWrite(A_1B, LOW);
-  digitalWrite(B_1A, LOW);
-  digitalWrite(B_1B, LOW);
+  // Stop all motors
+  stop_moving();
 }
 
 void loop() {
 
-  if (Serial.available()) {
+  if (BTSerial.available()) {
     
-    char command = Serial.read(); // Save a command received from bluetooth module
+    char command = BTSerial.read(); // Save a command received from bluetooth module
 
     if (command == 'F' || command == 'f') {       // Moving forward
       moving_forward();
