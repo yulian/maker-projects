@@ -9,11 +9,11 @@
  *  ButtonC   - 1P:'H',             2P:'Q'
  *  ButtonD   - 1P:'J',             2P:'W'
  *  
- *  2020년 3월 10일 생성됨 by 메이커멘토(Yulian)
+ *  March 10th in 2020 Made by Maker Mentor
  *  
  */
 
-// P1은 Player1, P2는 Player2를 의미함
+// P1 for Player1, P2 for Player2
 #define P1
 
 #include <Keyboard.h>
